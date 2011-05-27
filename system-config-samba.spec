@@ -6,7 +6,7 @@
 Summary: Samba server configuration tool
 Name: system-config-samba
 Version: 1.2.91
-Release: %mkrel 3
+Release: %mkrel 4
 URL: http://fedorahosted.org/%{name}
 License: GPLv2+
 Group: System/Configuration/Networking
@@ -26,7 +26,7 @@ BuildRequires: intltool
 # From version 1.2.68 on, online documentation is split off into its own
 # package system-config-samba-docs. The following ensures that updating from
 # earlier versions gives you both the main package and documentation.
-#Requires: system-config-samba-docs
+Requires: system-config-samba-docs
 Requires: dbus-python
 Requires: pygtk2.0
 Requires: pygtk2.0-libglade
