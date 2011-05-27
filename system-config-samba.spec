@@ -9,7 +9,7 @@ Version: 1.2.91
 Release: %mkrel 3
 URL: http://fedorahosted.org/%{name}
 License: GPLv2+
-Group: System Environment/Base
+Group: System/Configuration/Networking
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%__id_u -n)
 BuildArch: noarch
 Source0: http://fedorahosted.org/released/%{name}/%{name}-%{version}.tar.bz2
