@@ -5,8 +5,8 @@
 
 Summary: Samba server configuration tool
 Name: system-config-samba
-Version: 1.2.91
-Release: %mkrel 4
+Version: 1.2.92
+Release: %mkrel 1
 URL: http://fedorahosted.org/%{name}
 License: GPLv2+
 Group: System/Configuration/Networking
