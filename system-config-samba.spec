@@ -6,7 +6,7 @@
 Summary: Samba server configuration tool
 Name: system-config-samba
 Version: 1.2.92
-Release: %mkrel 1
+Release: %mkrel 2
 URL: http://fedorahosted.org/%{name}
 License: GPLv2+
 Group: System/Configuration/Networking
@@ -58,29 +58,29 @@ make DESTDIR=%buildroot POLKIT0_SUPPORTED=0 install
 
 %find_lang %name
 
+# for consolehelper config
+mkdir -p %{buildroot}%{_sysconfdir}/pam.d
+mkdir -p %{buildroot}%{_bindir}
+ln -sf %{_sysconfdir}/pam.d/mandriva-simple-auth %{buildroot}%{_sysconfdir}/pam.d/system-config-samba
+ln -sf %{_bindir}/consolehelper %{buildroot}%{_bindir}/system-config-samba
+
+#fix desktop back for using /usr/bin dir
+
+sed -i s/sbin/bin/ %{buildroot}%{_datadir}/applications/system-config-samba.desktop
+
 %clean
 rm -rf %{buildroot}
-
-%post
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
-
-%postun
-touch --no-create %{_datadir}/icons/hicolor
-if [ -x %{_bindir}/gtk-update-icon-cache ]; then
-  %{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
-fi
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
 %doc COPYING
+%{_bindir}/system-config-samba
 %{_sbindir}/system-config-samba
 %{_datadir}/system-config-samba
 %{_datadir}/applications/system-config-samba.desktop
 %{_datadir}/icons/hicolor/*/apps/system-config-samba.png
 %{_sysconfdir}/dbus-1/system.d/*.conf
+%{_sysconfdir}/pam.d/*
 %{_datadir}/dbus-1/system-services/*.service
 %{_datadir}/polkit-1/actions/org.freedesktop.config.samba.policy
 %{python_sitelib}/scsamba
