@@ -1,0 +1,32 @@
+--- Makefile.old	2010-10-19 17:49:51.000000000 +0400
++++ Makefile	2011-05-27 01:27:39.813017200 +0400
+@@ -8,7 +8,7 @@
+ 
+ PREFIX=/usr
+ SYSCONFDIR=/etc
+-BINDIR=${PREFIX}/bin
++BINDIR=${PREFIX}/sbin
+ DATADIR=${PREFIX}/share
+ MANDIR=${DATADIR}/man
+ PKGDATADIR=${DATADIR}/${PKGNAME}
+@@ -17,8 +17,8 @@
+ DBUS_POLICY_DIR=$(SYSCONFDIR)/dbus-1/system.d
+ DBUS_SERVICE_DIR=$(DATADIR)/dbus-1/system-services
+ 
+-POLKIT_FILES			= config/org.fedoraproject.config.samba.policy.0 \
+-						  config/org.fedoraproject.config.samba.policy.1
++POLKIT_FILES			= config/org.freedesktop.config.samba.policy.1
++						  
+ 
+ PY_SRC_DIR				= src
+ PY_SRC_APPS				= addUserWin.py basicPreferencesWin.py mainWindow.py sambaUserWin.py shareWindow.py system-config-samba.py system-config-samba-mechanism.py
+@@ -64,7 +64,7 @@
+ 	softdir=$${softdir/#$$p} ; \
+ 	softdir=$${softdir/#\/} ; \
+ 	ln  -fs ../$${softdir}/system-config-samba.py $(DESTDIR)$(BINDIR)/system-config-samba
+-	install -D -m 0644 config/org.fedoraproject.Config.Samba.conf $(DESTDIR)$(DBUS_POLICY_DIR)/org.fedoraproject.Config.Samba.conf
+-	install -D -m 0644 config/org.fedoraproject.Config.Samba.service $(DESTDIR)$(DBUS_SERVICE_DIR)/org.fedoraproject.Config.Samba.service
++	install -D -m 0644 config/org.freedesktop.Config.Samba.conf $(DESTDIR)$(DBUS_POLICY_DIR)/org.freedesktop.Config.Samba.conf
++	install -D -m 0644 config/org.freedesktop.Config.Samba.service $(DESTDIR)$(DBUS_SERVICE_DIR)/org.freedesktop.Config.Samba.service
+ 
+ clean: py-clean po-clean polkit-clean desktop-clean

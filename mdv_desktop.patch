@@ -1,0 +1,11 @@
+--- system-config-samba.desktop.in.old	2010-10-19 17:49:51.000000000 +0400
++++ system-config-samba.desktop.in	2011-05-27 01:21:53.269884534 +0400
+@@ -3,7 +3,7 @@
+ _Comment=Create, modify, and delete samba shares
+ Categories=System;Settings;
+ Icon=system-config-samba
+-Exec=/usr/bin/system-config-samba
++Exec=/usr/sbin/system-config-samba
+ Type=Application
+ StartupNotify=true
+ Terminal=false

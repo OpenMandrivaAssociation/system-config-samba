@@ -1,0 +1,32 @@
+--- src/scsamba/dbus/__init__.py.old	2010-10-19 17:49:51.000000000 +0400
++++ src/scsamba/dbus/__init__.py	2011-05-27 00:29:43.450377962 +0400
+@@ -20,5 +20,5 @@
+ # Authors:
+ # Nils Philippsen <nils@redhat.com>
+ 
+-dbus_service_name = "org.fedoraproject.Config.Samba"
+-dbus_service_path = "/org/fedoraproject/Config/Samba"
++dbus_service_name = "org.freedesktop.Config.Samba"
++dbus_service_path = "/org/freedesktop/Config/Samba"
+--- src/scsamba/dbus/proxy/sambaBackend.py.old	2010-10-19 17:49:51.000000000 +0400
++++ src/scsamba/dbus/proxy/sambaBackend.py	2011-05-27 00:32:31.333726325 +0400
+@@ -30,7 +30,7 @@
+         self.bus = bus
+         self.dbus_service_path = "/".join ((dbus_service_path, "Backend"))
+         self.dbus_object = bus.get_object (dbus_service_name, self.dbus_service_path)
+-        self.dbus_interface = dbus.Interface (self.dbus_object, "org.fedoraproject.Config.Samba.Backend")
++        self.dbus_interface = dbus.Interface (self.dbus_object, "org.freedesktop.Config.Samba.Backend")
+ 
+     @polkit.enable_proxy(authfail_exception=AuthError)
+     def isSambaRunning (self):
+--- src/scsamba/dbus/service/sambaBackend.py.old	2010-10-19 17:49:51.000000000 +0400
++++ src/scsamba/dbus/service/sambaBackend.py	2011-05-27 00:31:44.865281470 +0400
+@@ -27,7 +27,7 @@
+ from scsamba.dbus import dbus_service_name
+ 
+ class SambaBackend (slip.dbus.service.Object):
+-    default_polkit_auth_required = "org.fedoraproject.config.samba.configure"
++    default_polkit_auth_required = "org.freedesktop.config.samba.configure"
+ 
+     def __init__ (self, bus_name, object_path):
+         slip.dbus.service.Object.__init__ (self, bus_name, object_path)
