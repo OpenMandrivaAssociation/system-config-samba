@@ -3,39 +3,38 @@
 
 %bcond_with require_docs
 
-Summary: Samba server configuration tool
-Name: system-config-samba
-Version: 1.2.92
-Release: %mkrel 3
-URL: http://fedorahosted.org/%{name}
-License: GPLv2+
-Group: System/Configuration/Networking
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%__id_u -n)
-BuildArch: noarch
-Source0: http://fedorahosted.org/released/%{name}/%{name}-%{version}.tar.bz2
-Source1: config.tar.gz
-Patch0:	mdv_make.patch
-Patch1: mdv_dbus.patch
-Patch2:	mdv_desktop.patch
-BuildRequires: python
-BuildRequires: python-devel
-BuildRequires: desktop-file-utils
-BuildRequires: gettext
-BuildRequires: intltool
+Summary:	Samba server configuration tool
+Name:		system-config-samba
+Version:	1.2.92
+Release:	4
+URL:		http://fedorahosted.org/%{name}
+License:	GPLv2+
+Group:		System/Configuration/Networking
+BuildArch:	noarch
+Source0:	http://fedorahosted.org/released/%{name}/%{name}-%{version}.tar.bz2
+Source1:	config.tar.gz
+Patch0:		mdv_make.patch
+Patch1:		mdv_dbus.patch
+Patch2:		mdv_desktop.patch
+BuildRequires:	python
+BuildRequires:	python-devel
+BuildRequires:	desktop-file-utils
+BuildRequires:	gettext
+BuildRequires:	intltool
 # Until version 1.2.67, system-config-samba contained online documentation.
 # From version 1.2.68 on, online documentation is split off into its own
 # package system-config-samba-docs. The following ensures that updating from
 # earlier versions gives you both the main package and documentation.
-Requires: system-config-samba-docs
-Requires: dbus-python
-Requires: pygtk2.0
-Requires: pygtk2.0-libglade
-Requires: python
-Requires: python-slip >= 0.2.6
-Requires: python-slip-dbus >= 0.2.9
-Requires: samba
-Requires: samba-common
-Requires: hicolor-icon-theme
+Requires:	system-config-samba-docs
+Requires:	python-dbus
+Requires:	pygtk2.0
+Requires:	pygtk2.0-libglade
+Requires:	python
+Requires:	python-slip >= 0.2.6
+Requires:	python-slip-dbus >= 0.2.9
+Requires:	samba
+Requires:	samba-common
+Requires:	hicolor-icon-theme
 
 %description
 system-config-samba is a graphical user interface for creating, 
@@ -53,7 +52,6 @@ rm -f config/org.fedoraproject.*
 make %{?_smp_mflags}
 
 %install
-rm -rf %{buildroot}
 make DESTDIR=%buildroot POLKIT0_SUPPORTED=0 install
 
 %find_lang %name
@@ -68,8 +66,6 @@ ln -sf %{_bindir}/consolehelper %{buildroot}%{_bindir}/system-config-samba
 
 sed -i s/sbin/bin/ %{buildroot}%{_datadir}/applications/system-config-samba.desktop
 
-%clean
-rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root,-)
